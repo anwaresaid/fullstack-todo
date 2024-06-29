@@ -1,0 +1,31 @@
+{
+  "short_name": "PWA react app",
+  "name": "PWA todo react app",
+  "icons": [
+    {
+      "src": "./logo-todo.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "./logo-todo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./logo-todo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "./logo-todo.png",
+      "type": "image/png",
+      "sizes": "1024x1024",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
