@@ -9,11 +9,15 @@ function TodoForm(props) {
   const dispatch = useDispatch();
   const [todo, setTodo] = useState({
     title: "",
+    description: "",
     done: false,
   });
 
   function handleTaskInputChange(e) {
     setTodo({ ...todo, title: e.target.value });
+  }
+  function handleDescriptionInputChange(e) {
+    setTodo({ ...todo, description: e.target.value });
   }
 
   function handleSubmit(e) {
@@ -25,13 +29,23 @@ function TodoForm(props) {
 
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
-      <TextField
-        label="Task"
-        type="text"
-        name="title"
-        value={todo.title}
-        onChange={handleTaskInputChange}
-      />
+      <div className="fieldsContainer">
+        <TextField
+          label="Task"
+          type="text"
+          name="title"
+          className="task-input"
+          value={todo.title}
+          onChange={handleTaskInputChange}
+        />
+        <TextField
+          label="Description"
+          type="text"
+          name="description"
+          value={todo.description}
+          onChange={handleDescriptionInputChange}
+        />
+      </div>
       <Button variant="outlined" type="submit" className="submit-btn">
         Submit
       </Button>

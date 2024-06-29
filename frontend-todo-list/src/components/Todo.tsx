@@ -7,12 +7,17 @@ import { useSelector, useDispatch } from "react-redux";
 
 import React from "react";
 import { removeTodo, toggleComplete } from "../store/todolist/todoSlicer.ts";
-import { del } from "../service/apiService.ts";
+import { del, update } from "../service/apiService.ts";
 
 function Todo({ todo, fetchData }) {
   const dispatch = useDispatch();
   function handleCheckboxClick() {
-    dispatch(toggleComplete(todo.id));
+    update(`http://localhost:3000/todo/${todo.id}`, {
+      ...todo,
+      done: !todo.done,
+    }).then((response) => {
+      fetchData();
+    });
   }
 
   function handleRemoveClick() {
@@ -25,7 +30,7 @@ function Todo({ todo, fetchData }) {
   return (
     <ListItem style={{ display: "flex" }} className="list-item">
       <Checkbox
-        checked={todo.completed}
+        checked={todo.done}
         onClick={handleCheckboxClick}
         style={{ color: "white" }}
         className="checkbox"
@@ -36,7 +41,10 @@ function Todo({ todo, fetchData }) {
           textDecoration: todo.done ? "line-through" : null,
         }}
       >
-        <b> {todo.title}</b>
+        <div className="list-text">
+          <b> {todo.title}</b>
+          <p>{todo.description && todo.description}</p>
+        </div>
       </Typography>
       <IconButton onClick={handleRemoveClick}>
         <CloseIcon style={{ color: "white" }} className="icon" />

@@ -14,9 +14,10 @@ export class TodoService {
     return this.todoRepository.find();
   }
 
-  create(title: string): Promise<Todo> {
+  create(title: string, description: string): Promise<Todo> {
     const todo = new Todo();
     todo.title = title;
+    todo.description = description;
     return this.todoRepository.save(todo);
   }
 

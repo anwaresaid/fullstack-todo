@@ -19,8 +19,11 @@ export class TodoController {
   }
 
   @Post()
-  create(@Body('title') title: string) {
-    return this.todoService.create(title);
+  create(
+    @Body('title') title: string,
+    @Body('description') description: string,
+  ) {
+    return this.todoService.create(title, description);
   }
 
   @Put(':id')
